@@ -1,5 +1,4 @@
 const burger = document.querySelector(".menu-icon");
-console.log("burger:", burger);
 const menu = document.querySelector(".menu");
 const body = document.body;
 
@@ -31,9 +30,9 @@ if (filter) {
 }
 
 //------------Swiper start ----------------
-const swiper = new Swiper(".popular-slider", {
+const popularSlider = new Swiper(".popular-slider", {
   spaceBetween: 20,
-  slidesPerView: 3,
+  slidesPerView: 1,
   // Optional parameters
   //   direction: "vertical",
   //   loop: true,
@@ -45,12 +44,45 @@ const swiper = new Swiper(".popular-slider", {
 
   // Navigation arrows
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+    nextEl: ".popular-slider-next",
+    prevEl: ".popular-slider-prev",
   },
 
   // And if we need scrollbar
   // scrollbar: {
   //   el: '.swiper-scrollbar',
   // },
+
+  breakpoints: {
+    660: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+  },
 });
+
+const reviewsSlider = new Swiper(".slider-reviews", {
+  spaceBetween: 20,
+  slidesPerView: 1,
+  autoHeight: true,
+  navigation: {
+    nextEl: ".slider-reviews-next",
+    prevEl: ".slider-reviews-prev",
+  },
+});
+
+//-----------Gallery----------------
+const galleryItems = document.querySelectorAll(".gallery__item");
+if (galleryItems.length > 0) {
+  galleryItems.forEach((item) => {
+    new Swiper(item, {
+      slidesPerView: 1,
+      autoplay: {
+        delay: 5000,
+      },
+      // effect: "fade",
+    });
+  });
+}
